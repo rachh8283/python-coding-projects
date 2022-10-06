@@ -1,0 +1,156 @@
+#------------------------------------------------------------------------
+# Program Name: Automobile Inventory
+# Author: Rachael Herman
+# Date: October 10, 2021
+#------------------------------------------------------------------------
+# Pseudocode: Request input for vehicles to add, update, remove, or view.
+# 1. Create automobile class with defined variables
+# 2. Define setter and getter methods for variables
+# 3. In continuous loop, request user to choose from menu options
+# 4. Define methods for adding, removing, updaing,and displaying vehicles
+#   a. For #1, request info for adding new vehicle
+#   b. For #2, request index number for vehicle to be removed
+#   c. For #3, request index number for vehicle to be updated
+#   d. For #4, display all vehicles in list with index numbers
+# 5. Print or display notification when action has been performed.
+# 6. Export data to text file. 
+#------------------------------------------------------------------------
+# Program Inputs: Menu action, make, model, color, year, miles of vehicle,
+#                 and index number of vehicle to be updated or removed.
+# Program Outputs: Menu options, notification of action completed, text file. 
+#------------------------------------------------------------------------
+
+print("Automboile Inventory")
+
+class automobile:
+    # constructor
+    def __init__(self, make="", model="", color="", year=2018, mileage=0):
+        self.__make = make
+        self.__model = model
+        self.__color = color
+        self.__year = year
+        self.__mileage = mileage
+
+    # setter methods
+    def set_make(self, make):
+        self.__make = make
+
+    def set_model(self, model):
+        self.__model = model
+
+    def set_color(self, color):
+        self.__color = color
+
+    def set_year(self, year):
+        self.__year = year
+
+    def set_mileage(self, mileage):
+        self.__mileage = mileage
+
+    # getter methods
+    def get_make(self):
+        return self.__make
+
+    def get_model(self):
+        return self.__model
+
+    def get_color(self):
+        return self.__color
+
+    def get_year(self):
+        return self.__year
+
+    def get_mileage(self):
+        return self.__mileage
+
+
+# end of automobile class
+# method to add a new vehicle to the inventory
+def add_vehicle(v_list):
+    make = input("Enter make: ")
+    model = input("Enter model: ")
+    color = input("Enter color: ")
+    year = int(input("Enter year: "))
+    mileage = int(input("Enter mileage: "))
+    v = automobile(make, model, color, year, mileage)
+    v_list.append(v)
+    print("Added successfully...")
+
+
+# method to remove a vehicle from the inventory
+def remove_vehicle(v_list):
+    index = int(input("Enter the index # of vehicle to be removed: "))
+    if index >= 0 and index < len(v_list):
+        make = v_list[index].get_make()
+        model = v_list[index].get_model()
+        v_list.pop(index)
+        print(make, model, "is removed from inventory...")
+    else:
+        print("Invalid index")
+
+
+# method to update a vehicle info in the inventory
+def update_vehicle(v_list):
+    index = int(input("Enter the index # of vehicle to be updated: "))
+    if index >= 0 and index < len(v_list):
+        make = input("Enter new make: ")
+        model = input("Enter new model: ")
+        color = input("Enter new color: ")
+        year = int(input("Enter new year: "))
+        mileage = int(input("Enter new mileage: "))
+        v_list[index].set_make(make)
+        v_list[index].set_model(model)
+        v_list[index].set_color(color)
+        v_list[index].set_year(year)
+        v_list[index].set_mileage(mileage)
+        print("updated successfully...")
+    else:
+        print("Invalid index")
+
+
+# method to print all vehicle details in proper formatted order
+def display_vehicles(v_list):
+    print('{:10} {:10} {:10} {:10} {:10} {:10}'.format('index#', 'MAKE', 'MODEL', 'COLOR', 'YEAR', 'MILEAGE'))
+    for i in range(len(v_list)):
+        v = v_list[i]
+        print('{:10} {:10} {:10} {:10} {:10} {:10}'.format(str(i), v.get_make(), v.get_model(), v.get_color(),
+                                                           str(v.get_year()), str(v.get_mileage())))
+
+
+v_list = []  # initial list
+# looping infinitely
+while True:
+    # showing menu
+    print("\n1. Add vehicle")
+    print("2. Remove vehicle")
+    print("3. Update vehicle")
+    print("4. Display all vehicles")
+    print("5. Save inventory to file")
+    print("6. Quit")
+    # getting choice
+    ch = int(input("\n## Enter your choice "))
+    # performing actions based on choice
+    if ch == 1:
+        add_vehicle(v_list)
+    elif ch == 2:
+        remove_vehicle(v_list)
+    elif ch == 3:
+        update_vehicle(v_list)
+    elif ch == 4:
+        display_vehicles(v_list)
+    elif ch == 5:
+        outfile = open("Inventory.txt", "w")
+        for index in range(len(v_list)):
+            outfile.write(str(index) + '.\n')
+            outfile.write('Make: ' + v_list[index].get_make() + '\n')
+            outfile.write('Model: ' + v_list[index].get_model() + '\n')
+            outfile.write('Color: ' + v_list[index].get_color() + '\n')
+            outfile.write('Year: ' + str(v_list[index].get_year()) + '\n')
+            outfile.write('Mileage:' + str(v_list[index].get_mileage()) + '\n')
+        outfile.close()
+        print('\n File created successfully. \n') 
+    elif ch == 6:
+        # end of the program
+        break;
+    else:
+        print("Invalid choice")
