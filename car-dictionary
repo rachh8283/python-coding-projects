@@ -1,0 +1,53 @@
+#------------------------------------------------------------------------
+# Program Name: CT Assignment #2, Cars
+# Author: 
+# Date Due: 
+#------------------------------------------------------------------------
+# Pseudocode: Request information from user to put into dictionary. 
+# 1. Create variables
+# 2. Request data
+# 3. Create the dictionary
+# 3. Print/display the dictionary 
+#------------------------------------------------------------------------
+# Program Inputs: Car brand, model, year, starting odometer reading, 
+# ending odometer reading, and the estimated miles per gallon.  
+# Program Outputs: Display the car dictionary.
+#------------------------------------------------------------------------
+
+print("CAR DATA:")
+
+#Variables
+Brand = ""
+Model = ""
+Year = ""
+Start_Odometer = ""
+End_Odometer = ""
+Est_MPG = 0
+
+#Request data
+Brand = input("\nEnter car brand: ")
+Model = input("Enter car model: ")
+Year = input("Enter car year: ")
+
+#Odometer readings not made integers given use of comma.
+#Altnerative method = instruct user not to enter comma.
+Start_Odometer =input("Enter the starting odometer reading: ")
+End_Odometer = input("Enter the ending odometer reading: ")
+
+#Converted to integer
+Est_MPG = int(input("Enter the car's estimated miles per gallon (just the number): "))
+
+#Create the dictionary
+Car = {"\nDictionary:"
+       "\nBrand":Brand.title(),
+       "Model":Model.title(),
+       "Year":Year,
+       "Start":Start_Odometer,
+       "End":End_Odometer,
+       "MPG":Est_MPG}
+
+#Print/display the Car dictionary
+for key in Car:
+    print(key, ' : ', Car[key])
+#print(Car)
+print("End of Program")
