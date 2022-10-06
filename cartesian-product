@@ -1,0 +1,56 @@
+#------------------------------------------------------------------------
+# Program Name: Cartesian product
+# Project Objective: Compute the Cartesian product of two lists with up
+# to 10 numbers.
+#------------------------------------------------------------------------
+# Pseudocode: 
+# 1. Request input for list A numbers
+# 2. Request input for list B numbers
+# 3. Validate input
+#   a. Numbers must be supplied
+#   b. List A and List B must be integers
+#   c. List A and List B cannot have more than 10 numbers
+# 4. Print/display the computed Cartesian product 
+
+#------------------------------------------------------------------------
+# Program Inputs: Two lists of up to 10 numbers each 
+# Program Outputs: Ordered pairs of the numbers in each list as a new
+#                  list, AxB.
+#------------------------------------------------------------------------
+
+
+print("Compute Cartesian Product of 2 Lists.")
+
+#Import itertools to iterate over data structures
+import itertools
+
+# Define Cartesian function
+def cartesian(list_A, list_B):
+        AxB = [ ]
+        for A in list_A:
+            for B in list_B:
+                AxB.append((A,B))
+        print('AxB =  ', AxB)
+
+
+# Use while loop with Try/Except blocks to validate input and handle errors
+while True:
+    try:
+        list_A = list(map(int, input('\nEnter up to 10 numbers for List A. Separate with commas: ').split(',')))
+        if (len(list_A) == 0) or (len(list_A) > 10):
+            print("ERROR: Must enter 1-10 numbers, separated by commas.")
+            continue
+        list_B = list(map(int, input('\nEnter up to 10 numbers for List B. Separate with commas: ').split(',')))
+        if (len(list_B) == 0) or (len(list_B) > 10):
+            print("ERROR: Must enter 1-10 numbers, separated by commas.")
+            continue        
+        result = list(itertools.product(list_A, list_B))
+        break
+        
+    except ValueError:
+        print("Wrong input. Please try again!")
+
+print(f'\nAxB = {result}')
+
+
+print("\nEnd of Program")
