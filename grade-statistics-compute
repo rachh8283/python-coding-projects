@@ -1,0 +1,55 @@
+#------------------------------------------------------------------------
+# Program Name: Grade Statistics
+#------------------------------------------------------------------------
+# Pseudocode: Request 5 grades and compute avg, max., and min. scores
+# 1. Initialize variables
+# 2. Request and validate each of the 5 scores in a loop
+#   a. Must be supplied
+#   b. Must be an integer
+#   c. Cannot be less than 0 or more than 100
+# 3. Accumulate total scores up to 5
+#    a. If score < Minimum, replace Miminum with score
+#    b. If score > Maximum, replace Maximum with score
+# 4. Display the average, minimum, and maximum scores
+#------------------------------------------------------------------------
+# Program Inputs: Five grade scores  
+# Program Outputs: Average, minimum, and maximum scores of those provided.
+#------------------------------------------------------------------------
+
+print("Display Average, Minimum, and Maximum Scores for 5 Grades")
+
+num = 5
+counter = 0
+sum = 0
+min = 100 
+max = 5
+InputNum = ""
+
+for n in range (1, num+1):
+    InputNum = input("\nEnter a grade from 0 to 100: ")
+    if InputNum == "":
+        print("\nERROR: Grade score must be supplied.")
+        break
+    else:
+        if not(InputNum.isdigit()):
+            print("\nThis must be a number between 0 and 100.")
+            break
+        else:
+            score = float(InputNum)
+            if (score > 100) or (score < 0):
+                print("\nERROR: Score must be between 0 and 100.")
+                break
+            else:
+                counter += 1
+                sum += score
+                if score < min:
+                    min = score
+                if score > max:
+                    max = score
+                
+avg = sum / num
+print('\nThe Average grade is:', avg)
+print('The Maximum grade is:', max)
+print('The Minimum grade is:', min)
+
+print("\nEnd of Program.")
