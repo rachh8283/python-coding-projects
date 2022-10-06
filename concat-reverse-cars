@@ -1,0 +1,34 @@
+# Program Name: Concatenation and reverse order, cars input
+# Project Objective: Write a function to work on 3 strings and return a
+# concatenation of values in reverse order.
+#------------------------------------------------------------------------
+# Pseudocode: 
+# 1. Declare rev_str() function
+#   a. Parameters: Model, make, and year
+#   b. Returns: The 3 concatenated items in reverse order
+# 2. Main program
+#   a. Initialize variables
+#   b. Accept three values from user, capitalizing make and model
+#   c. Invoke rev_str() function
+#   d. Display concatenated statement using rev_str function
+
+#------------------------------------------------------------------------
+# Program Inputs: Car Model, Make, and Year  
+# Program Outputs: You drive a Year + Make + Model.
+#------------------------------------------------------------------------
+
+print("Display Vehicle Make, Model, and Year")
+
+def rev_str(model, make, year):
+    the_car = (year + ' ' + make + ' ' + model)
+    return the_car
+
+model = input("\nVehicle Model: ").capitalize()
+make = input("Vehicle Make: ").capitalize()
+year = input("Vehicle Year: ")
+
+#FIXME Validate entries
+
+print("You drive a", str(rev_str(model, make, year)))
+
+print("\nEnd of Program")
